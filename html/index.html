@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RS Radio</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="roster-overlay" aria-hidden="true"></div>
+<div id="app" aria-hidden="true">
+    <section id="radio-shell" aria-label="RS Radio">
+        <span class="window-label">RS RADIO</span>
+        <div id="radio-art-viewport" aria-hidden="true">
+            <img id="radio-art" src="img/radio.png" alt="Modern RS Radio handheld" />
+        </div>
+
+        <section id="screen-bezel" aria-label="RS Radio display">
+            <div id="radio-screen" class="powered-off">
+                <div class="screen-glass"></div>
+                <div class="scanline"></div>
+
+                <header class="screen-header">
+                    <div class="screen-brand">
+                        <span class="brand-mark">RS</span>
+                        <div><strong>RADIO</strong><small id="screen-team">CITY NETWORK</small></div>
+                    </div>
+                    <div class="screen-status">
+                        <span id="screen-signal">LINK 000</span>
+                        <span id="screen-battery">BAT 100</span>
+                    </div>
+                </header>
+
+                <section class="frequency-strip">
+                    <div class="frequency-block">
+                        <span class="frequency-label">FREQ</span>
+                        <strong id="screen-frequency">---</strong>
+                    </div>
+                    <div class="frequency-copy">
+                        <strong id="screen-channel">RADIO OFFLINE</strong>
+                        <small id="screen-callsign">NO CALLSIGN</small>
+                    </div>
+                    <span id="screen-talk">OFF</span>
+                </section>
+
+                <nav class="screen-tabs" aria-label="Radio pages">
+                    <button data-tab="home" class="tab active"><b>⌂</b><span>HOME</span></button>
+                    <button data-tab="channels" class="tab"><b>CH</b><span>CHANNELS</span></button>
+                    <button data-tab="units" class="tab"><b>U</b><span>UNITS</span></button>
+                    <button data-tab="distress" class="tab"><b>!</b><span>SOS</span></button>
+                    <button data-tab="settings" class="tab"><b>⚙</b><span>SET</span></button>
+                </nav>
+
+                <main id="screen-content"></main>
+
+                <footer class="screen-footer">
+                    <span id="last-sync">RS LINK · --:--</span>
+                    <span id="keypad-entry"></span>
+                    <button id="distress-button">SOS</button>
+                </footer>
+            </div>
+        </section>
+
+        <button class="hotspot hw-volume" data-action="volume" aria-label="Volume"></button>
+        <button class="hotspot hw-power" data-action="power" aria-label="Power"></button>
+        <button class="hotspot hw-sos" data-action="distress" aria-label="Emergency"></button>
+        <button class="hotspot close" data-action="close" aria-label="Close radio">×</button>
+        <div id="gameplay-hint">F11 CLOSE · WALK / RUN / PTT ENABLED</div>
+    </section>
+</div>
+<script src="rs-enhanced.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
