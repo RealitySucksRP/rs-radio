@@ -607,7 +607,7 @@ end
 
 RegisterCommand(nativePTTCommand, function() setNativePTT(true) end, false)
 RegisterCommand(nativePTTReleaseCommand, function() setNativePTT(false) end, false)
-RegisterKeyMapping(nativePTTCommand, 'Talk over RS Radio', 'keyboard', tostring((Config.Voice or {}).NativePTTKey or 'LMENU'))
+RegisterKeyMapping(nativePTTCommand, 'Talk over RS Radio', 'keyboard', tostring((Config.Voice or {}).NativePTTKey or 'RSHIFT'))
 
 RegisterNetEvent('rs-radio:client:talkingTimeout', function()
     if Voice.Provider() ~= 'cfx-native' then return end
@@ -635,6 +635,10 @@ CreateThread(function()
         if radioOpen and keepInputEnabled() then
             Wait(0)
             SetNuiFocusKeepInput(true)
+            -- Keep walking/PTT available without mouse input turning the camera
+            -- while the player is clicking the handset.
+            DisableControlAction(0, 1, true) -- LOOK_LR
+            DisableControlAction(0, 2, true) -- LOOK_UD
             DisableControlAction(0, 24, true)
             DisableControlAction(0, 25, true)
             DisableControlAction(0, 37, true)

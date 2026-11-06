@@ -1,6 +1,6 @@
 # GTA V Enhanced Server CFG
 
-RS Radio v1.0.0 uses the current server-owned Cfx voice channel API on GTA V Enhanced when `Config.Voice.Backend = 'auto'`.
+RS Radio uses the current server-owned Cfx voice channel API on GTA V Enhanced when `Config.Voice.Backend = 'auto'`.
 
 Recommended minimum:
 
@@ -11,6 +11,10 @@ ensure rs-radio
 
 If framework or inventory resources are used, ensure them before `rs-radio` as usual.
 
+To require the Enhanced backend instead of permitting automatic Legacy fallback, set the existing `Config.Voice.Backend` option to `'cfx-native'`. Leave other voice options intact.
+
+This config enables the radio transport. Your server still needs a compatible proximity/phone voice provider. Starting a Legacy Mumble-based provider beside the native radio can still produce Mumble deprecation warnings. See [Mumble warning troubleshooting](MUMBLE-WARNING-FAQ.md).
+
 ## Do not enable sv_mumble for RS Radio
 
 Cfx documents the Enhanced Mumble compatibility layer as deprecated and warns that `sv_mumble` allows client-controlled voice channels. RS Radio's Enhanced backend does not need it.
@@ -19,7 +23,7 @@ If another installed resource still requires `sv_mumble`, that is a server-wide 
 
 ## PTT
 
-Default Enhanced radio PTT is `LMENU` (Left Alt) through `+rs_radio_talk`. The client sends only transmit intent. The server decides whether the player is a valid channel member and calls the Cfx mute native.
+Default Enhanced radio PTT is `RSHIFT` (Right Shift) through `+rs_radio_talk`. Saved FiveM key bindings take precedence over this default. The client sends only transmit intent. The server decides whether the player is a valid channel member and calls the Cfx mute native.
 
 ## Voice capability note
 

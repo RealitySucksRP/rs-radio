@@ -10,7 +10,7 @@ Config.Inventory = 'auto' -- auto, ox_inventory, framework, standalone
 Config.Voice = {
     Backend = 'auto', -- auto, cfx-native, pma-voice
     Resource = 'pma-voice',
-    NativePTTKey = 'LMENU',
+    NativePTTKey = 'RSHIFT', -- Players can rebind "Talk over RS Radio" in FiveM key bindings.
     NativePTTCommand = '+rs_radio_talk',
     MaxTransmitSeconds = 120
 }

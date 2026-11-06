@@ -37,16 +37,9 @@ button { color: inherit; }
 }
 #app.visible { display: block; }
 
-/* Artwork is 1080x1438 with a real alpha channel, and the device occupies
-   574x1359 of it at (247,23). The shell is sized to the DEVICE, not the file:
-   the crop below maps that bounding box exactly onto the shell so every screen
-   overlay percentage below is a percentage of the radio itself.
-
-   The previous art was RGB with NO alpha, so its studio backdrop was opaque
-   pixels baked into the image. No amount of rectangular cropping removes a
-   backdrop that surrounds the device on all four sides -- in game it rendered
-   as a grey panel floating behind the radio. Transparency is what fixes that,
-   not CSS. Keep any replacement art RGBA with the device cut out. */
+/* Supplied rugged-radio artwork, cut out on real alpha: 1086x1448.
+   Device bounds are (246,24)..(827,1400). Map those bounds onto the existing
+   shell to preserve the player's handset size and position. */
 #radio-shell {
     --sh: min(96vh, calc(1035px * var(--rs-scale, 1)));
     --u: calc(var(--sh) / 100);
@@ -73,13 +66,11 @@ button { color: inherit; }
 }
 #radio-art {
     position: absolute;
-    /* Derived from the alpha bounding box, not eyeballed. Displayed aspect
-       works out to 0.7510, identical to the source, so object-fit: fill
-       introduces no distortion. */
-    top: -1.69%;
-    left: -43.03%;
-    width: 188.15%;
-    height: 105.81%;
+    /* Crop the transparent canvas margins to the device bounds above. */
+    top: -1.7442%;
+    left: -42.3408%;
+    width: 186.9191%;
+    height: 105.2326%;
     object-fit: fill;
     pointer-events: none;
 }
@@ -102,18 +93,11 @@ button { color: inherit; }
 /* Blank glass area of the generated radio. */
 #screen-bezel {
     position: absolute;
-    /* Measured against the artwork alpha, then confirmed by rendering the page
-       and overlaying this box on the device: the glass runs 18.6%..84.8%
-       horizontally and 36.5%..74.2% vertically of the device.
-
-       The previous values (26.75 / 35.45 / 53.55 / 28.35) were tuned for the
-       older artwork and left the UI inset on both sides with a dead black band
-       across the bottom third of the screen -- visible in game as a half-used
-       display. The bezel padding below keeps the UI just off the glass edge. */
+    /* Keep the menu inside the supplied artwork's black glass. */
     left: 18.6%;
-    top: 36.5%;
+    top: 37.2%;
     width: 66.2%;
-    height: 37.7%;
+    height: 36.3%;
     z-index: 15;
     padding: .45%;
     border-radius: 4.5%;
@@ -432,9 +416,9 @@ button { color: inherit; }
 
 /* Hardware hotspots aligned to the three lower buttons of the chosen radio. */
 .hotspot { position:absolute; z-index:32; border:0; background:transparent; cursor:pointer; }
-.hw-volume { left:29.8%; top:65.6%; width:19.1%; height:4.9%; }
-.hw-power { left:48.1%; top:65.2%; width:15.0%; height:5.6%; border-radius:35%; }
-.hw-sos { left:64.3%; top:65.6%; width:18.7%; height:4.9%; }
+.hw-volume { left:20.8%; top:74.9%; width:18.5%; height:5.4%; }
+.hw-power { left:42.8%; top:74.8%; width:18.8%; height:7.0%; border-radius:35%; }
+.hw-sos { left:64.2%; top:74.9%; width:18.5%; height:5.4%; }
 .close {
     right:13.5%; top:26.0%; width:calc(var(--u)*2.8); height:calc(var(--u)*2.8);
     display:grid; place-items:center; border:1px solid rgba(93,198,255,.35); border-radius:50%;
